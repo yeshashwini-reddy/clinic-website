@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vanitha Clinic — Simple and efficient local clinic management system for appointments, doctors, and patient care." />
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>Vanitha Clinic — Local Clinic Management</title>
+    <script>
+      window.addEventListener('error', function(e) {
+        var errorDiv = document.createElement('div');
+        errorDiv.id = 'js-runtime-error';
+        errorDiv.style.position = 'fixed';
+        errorDiv.style.bottom = '0';
+        errorDiv.style.left = '0';
+        errorDiv.style.width = '100%';
+        errorDiv.style.backgroundColor = '#ef4444';
+        errorDiv.style.color = 'white';
+        errorDiv.style.padding = '16px';
+        errorDiv.style.zIndex = '999999';
+        errorDiv.style.fontFamily = 'monospace';
+        errorDiv.style.fontSize = '14px';
+        errorDiv.style.whiteSpace = 'pre-wrap';
+        errorDiv.innerText = 'Runtime Error: ' + e.message + '\nStack: ' + (e.error ? e.error.stack : 'N/A');
+        document.body.appendChild(errorDiv);
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        var errorDiv = document.createElement('div');
+        errorDiv.id = 'js-promise-error';
+        errorDiv.style.position = 'fixed';
+        errorDiv.style.bottom = '0';
+        errorDiv.style.left = '0';
+        errorDiv.style.width = '100%';
+        errorDiv.style.backgroundColor = '#f97316';
+        errorDiv.style.color = 'white';
+        errorDiv.style.padding = '16px';
+        errorDiv.style.zIndex = '999999';
+        errorDiv.style.fontFamily = 'monospace';
+        errorDiv.style.fontSize = '14px';
+        errorDiv.style.whiteSpace = 'pre-wrap';
+        errorDiv.innerText = 'Promise Rejection: ' + (e.reason ? (e.reason.message || e.reason) : 'Unknown Reason') + '\nStack: ' + (e.reason && e.reason.stack ? e.reason.stack : 'N/A');
+        document.body.appendChild(errorDiv);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
