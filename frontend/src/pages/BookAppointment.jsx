@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { db } from '../firebase';
 import { 
   collection, 
@@ -649,7 +650,12 @@ const BookAppointment = () => {
 
   // Main UI Wrapper
   return (
-    <div className="container mx-auto max-w-4xl py-8 px-4">
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="container mx-auto max-w-4xl py-8 px-4"
+    >
       {/* Page Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Book a Consultation</h1>
@@ -799,7 +805,7 @@ const BookAppointment = () => {
                   }}
                   min={new Date().toISOString().split('T')[0]} // Block yesterday
                   required 
-                  className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm" 
+                  className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm input-focus-glow transition-all duration-200" 
                 />
               </div>
 
@@ -1216,8 +1222,7 @@ const BookAppointment = () => {
         )}
 
       </div>
-
-    </div>
+    </motion.div>
   );
 };
 

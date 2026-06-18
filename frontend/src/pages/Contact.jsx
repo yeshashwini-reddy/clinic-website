@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   const [name, setName] = useState('');
@@ -32,7 +33,12 @@ const Contact = () => {
   return (
     <div className="container mx-auto max-w-6xl py-8 space-y-12">
       {/* Header Banner */}
-      <div className="text-center space-y-4 max-w-2xl mx-auto">
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-center space-y-4 max-w-2xl mx-auto"
+      >
         <span className="px-3 py-1 bg-blue-50 text-primary font-semibold text-xs rounded-full uppercase tracking-wider">
           Get In Touch
         </span>
@@ -42,11 +48,17 @@ const Contact = () => {
         <p className="text-slate-600 leading-relaxed text-sm md:text-base">
           Have any questions or need assistance? Reach out to our customer care team or visit us at our main Hyderabad clinic.
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid md:grid-cols-12 gap-8 items-start">
         {/* Contact Information Details */}
-        <div className="md:col-span-5 space-y-6">
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6 }}
+          className="md:col-span-5 space-y-6"
+        >
           <div className="bg-white rounded-3xl border border-slate-100 shadow-md p-8 space-y-8 relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary to-blue-600" />
             
@@ -113,10 +125,16 @@ const Contact = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Contact Form */}
-        <div className="md:col-span-7 bg-white rounded-3xl border border-slate-100 shadow-md p-8 relative overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6 }}
+          className="md:col-span-7 bg-white rounded-3xl border border-slate-100 shadow-md p-8 relative overflow-hidden"
+        >
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-500 to-teal-600" />
 
           <h3 className="text-xl font-bold text-slate-800 tracking-tight mb-6">Send us a Message</h3>
@@ -143,7 +161,7 @@ const Contact = () => {
                     placeholder="E.g. Jane Doe"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm"
+                    className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm input-focus-glow transition-all duration-200"
                   />
                 </div>
                 <div className="space-y-1">
@@ -155,7 +173,7 @@ const Contact = () => {
                     placeholder="janedoe@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm"
+                    className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm input-focus-glow transition-all duration-200"
                   />
                 </div>
               </div>
@@ -169,15 +187,17 @@ const Contact = () => {
                   placeholder="How can we help you today?"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm resize-none"
+                  className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm resize-none input-focus-glow transition-all duration-200"
                 />
               </div>
 
               <div className="pt-2 flex justify-end">
-                <button
+                <motion.button
                   type="submit"
                   title="Send via WhatsApp"
-                  className="w-14 h-14 bg-[#25D366] text-white rounded-full hover:bg-[#1ebd5a] transition-all hover:scale-110 shadow-lg shadow-[#25D366]/30 flex items-center justify-center group relative"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-14 h-14 bg-[#25D366] text-white rounded-full hover:bg-[#1ebd5a] transition-all shadow-lg shadow-[#25D366]/30 flex items-center justify-center group relative cursor-pointer"
                 >
                   <svg 
                     viewBox="0 0 24 24" 
@@ -190,11 +210,11 @@ const Contact = () => {
                   <span className="absolute -top-10 scale-0 transition-all rounded-lg bg-slate-800 p-2 text-xs text-white group-hover:scale-100 whitespace-nowrap shadow-lg">
                     Send via WhatsApp
                   </span>
-                </button>
+                </motion.button>
               </div>
             </form>
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

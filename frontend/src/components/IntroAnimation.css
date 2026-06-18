@@ -1,0 +1,150 @@
+/* IntroAnimation.css */
+
+:root {
+  --brand-primary: #3F74E7;
+  --brand-dark: #3150B8;
+  --brand-soft: #DDEBFF;
+  --brand-white: #FFFFFF;
+  --brand-grey: #F7F9FC;
+  --brand-teal: #6FD3D7;
+}
+
+.intro-container {
+  background: radial-gradient(circle at center, var(--brand-white) 0%, var(--brand-grey) 45%, var(--brand-soft) 85%, #f2f7ff 100%);
+  background-size: 200% 200%;
+  animation: introBgShift 12s ease infinite alternate;
+}
+
+@keyframes introBgShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Glowing blurred shapes in background */
+.intro-glow-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.1;
+  pointer-events: none;
+  animation: introFloat 20s ease-in-out infinite alternate;
+}
+
+@keyframes introFloat {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-40px) scale(1.15); }
+  100% { transform: translateY(30px) scale(0.9); }
+}
+
+/* Floating plus icons */
+.intro-plus-particle {
+  position: absolute;
+  color: var(--brand-primary);
+  opacity: 0.05;
+  font-family: system-ui, sans-serif;
+  font-weight: 300;
+  pointer-events: none;
+  user-select: none;
+  animation: introFloatParticle 14s linear infinite;
+}
+
+@keyframes introFloatParticle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.06;
+  }
+  90% {
+    opacity: 0.06;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Heartbeat line animation */
+.intro-heartbeat-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 250px;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.intro-heartbeat-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: heartbeatDraw 7s linear infinite;
+}
+
+@keyframes heartbeatDraw {
+  0% { stroke-dashoffset: 1000; }
+  60% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Text glow container */
+.intro-text-glow {
+  text-shadow: 0 0 25px rgba(63, 116, 231, 0.15);
+}
+
+/* Responsive Logo Container */
+.intro-logo-container {
+  width: 200px;
+  height: 200px;
+}
+
+/* Proportional Rings relative to Logo Container */
+.intro-ring-1 {
+  width: 145%;
+  height: 145%;
+}
+
+.intro-ring-2 {
+  width: 175%;
+  height: 175%;
+}
+
+/* Responsive Typography */
+.intro-clinic-title {
+  font-size: 78px;
+  line-height: 1.1;
+}
+
+.intro-clinic-tagline {
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+  .intro-logo-container {
+    width: 150px;
+    height: 150px;
+  }
+  .intro-clinic-title {
+    font-size: 56px;
+  }
+  .intro-clinic-tagline {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .intro-logo-container {
+    width: 120px;
+    height: 120px;
+  }
+  .intro-clinic-title {
+    font-size: 40px;
+  }
+  .intro-clinic-tagline {
+    font-size: 18px;
+  }
+}

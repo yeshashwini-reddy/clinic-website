@@ -1,0 +1,102 @@
+/* Light & Dark Theme Variables */
+:root {
+  --bg-color: #F7F9FC;
+  --bg-secondary: #FFFFFF;
+  --card-color: #FFFFFF;
+  --navbar-color: rgba(255, 255, 255, 0.8);
+  --navbar-scrolled: rgba(255, 255, 255, 0.95);
+  --primary-color: #3F74E7;
+  --primary-hover: #3150B8;
+  --accent-color: #6FD3D7;
+  --text-color: #1E293B;
+  --text-secondary: #64748B;
+  --border-color: #E2E8F0;
+  --shadow-main: 0 6px 20px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.12);
+  --primary-glow: rgba(63, 116, 231, 0.15);
+}
+
+[data-theme="dark"] {
+  --bg-color: #0F172A;
+  --bg-secondary: #1E293B;
+  --card-color: #1E293B;
+  --navbar-color: rgba(17, 24, 39, 0.8);
+  --navbar-scrolled: rgba(17, 24, 39, 0.95);
+  --primary-color: #5B8CFF;
+  --primary-hover: #3b82f6; /* Brighter blue hover in dark mode */
+  --accent-color: #7DE2E8;
+  --text-color: #FFFFFF;
+  --text-secondary: #CBD5E1;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --shadow-main: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.45);
+  --primary-glow: rgba(91, 140, 255, 0.15);
+}
+
+/* Base theme transitions and global overrides */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+/* Force standard input tags to adapt to the active theme */
+input, textarea, select {
+  background-color: var(--card-color) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.7;
+}
+
+select option {
+  background-color: var(--card-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* Temporary transition class during theme toggle */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 300ms ease-in-out, 
+              color 300ms ease-in-out, 
+              border-color 300ms ease-in-out, 
+              box-shadow 300ms ease-in-out !important;
+}
+
+/* Recharts Dark Mode compatibility styling */
+[data-theme="dark"] .recharts-text {
+  fill: var(--text-secondary) !important;
+}
+[data-theme="dark"] .recharts-cartesian-grid-horizontal line,
+[data-theme="dark"] .recharts-cartesian-grid-vertical line {
+  stroke: var(--border-color) !important;
+}
+[data-theme="dark"] .recharts-default-tooltip {
+  background-color: var(--card-color) !important;
+  border-color: var(--border-color) !important;
+}
+[data-theme="dark"] .recharts-tooltip-item {
+  color: var(--text-color) !important;
+}
+
+/* Invert standard HTML5 date/time picker calendar icons for legibility */
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator,
+[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* Override bg-white background color in dark mode (except intro animations) */
+[data-theme="dark"] .bg-white:not(.intro-exclude) {
+  background-color: var(--card-color) !important;
+}
+
+/* Apply card and button hover styles from requirements */
+.bg-primary {
+  transition: transform 250ms ease-in-out, background-color 250ms ease-in-out, box-shadow 250ms ease-in-out !important;
+}
+.bg-primary:hover {
+  transform: translateY(-2px) !important;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { Mail, Lock, User, Phone, LogIn, UserPlus } from 'lucide-react';
 import { auth, db } from '../firebase';
@@ -97,7 +98,12 @@ const LoginRegister = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12">
-      <div className="bg-white rounded-2xl shadow-xl border border-slate-100 max-w-md w-full p-8 space-y-6 relative overflow-hidden transition-all duration-300">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.97, y: 15 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="bg-white rounded-2xl shadow-xl border border-slate-100 max-w-md w-full p-8 space-y-6 relative overflow-hidden"
+      >
         
         {/* Subtle decorative top border/bar */}
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary to-blue-600" />
@@ -145,7 +151,7 @@ const LoginRegister = () => {
                   placeholder="John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-800 text-sm"
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-800 text-sm input-focus-glow"
                 />
               </div>
             </div>
@@ -168,7 +174,7 @@ const LoginRegister = () => {
                   placeholder="+1 (555) 000-0000"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-800 text-sm"
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-800 text-sm input-focus-glow"
                 />
               </div>
             </div>
@@ -190,7 +196,7 @@ const LoginRegister = () => {
                 placeholder="yourname@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-800 text-sm"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-800 text-sm input-focus-glow"
               />
             </div>
           </div>
@@ -212,16 +218,18 @@ const LoginRegister = () => {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-800 text-sm"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-800 text-sm input-focus-glow"
               />
             </div>
           </div>
 
           {/* Submit Button */}
-          <button
+          <motion.button
             type="submit"
             disabled={loading}
-            className="w-full mt-4 py-3 px-4 bg-primary text-white rounded-xl font-semibold shadow-md hover:shadow-lg hover:bg-primary-dark active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none transition-all flex items-center justify-center space-x-2 text-sm"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full mt-4 py-3 px-4 bg-primary text-white rounded-xl font-semibold shadow-md hover:shadow-lg hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none transition-all flex items-center justify-center space-x-2 text-sm cursor-pointer"
           >
             {loading ? (
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -236,7 +244,7 @@ const LoginRegister = () => {
                 <span>Register</span>
               </>
             )}
-          </button>
+          </motion.button>
         </form>
 
         {/* Footer Link / Toggle */}
@@ -251,7 +259,7 @@ const LoginRegister = () => {
             {isLogin ? "Don't have a patient account? Sign up" : 'Already have an account? Log in'}
           </button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

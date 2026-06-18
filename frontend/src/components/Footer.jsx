@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Heart } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 /**
  * Footer for the clinic website.
@@ -8,7 +9,13 @@ import { Heart } from 'lucide-react';
  */
 const Footer = () => {
   return (
-    <footer className="bg-primary text-white py-6 mt-auto">
+    <motion.footer 
+      initial={{ opacity: 0, y: 25 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-primary text-white py-6 mt-auto"
+    >
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
         <div className="text-center md:text-left mb-4 md:mb-0">
           © {new Date().getFullYear()} Vanitha Clinic. All rights reserved.
@@ -24,7 +31,7 @@ const Footer = () => {
           <Heart className="w-5 h-5 mr-1" /> Made with care
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

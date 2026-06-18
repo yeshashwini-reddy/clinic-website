@@ -1,8 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useAuth } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import IntroAnimation from './components/IntroAnimation';
 import ToastContainer from './components/Toast';
 import LoginRegister from './pages/LoginRegister.jsx';
 import Home from './pages/Home';
@@ -56,56 +59,80 @@ const ScrollToTop = () => {
 };
 
 const AppContent = () => {
+  const [showIntro, setShowIntro] = React.useState(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return false;
+    return true;
+  });
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
+
   return (
     <>
-      <ToastContainer />
-      <ScrollToTop />
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Layout><LandingPage /></Layout>} />
-        <Route path="/login" element={<Layout><LoginRegister /></Layout>} />
-        
-        {/* New Login Routes (Removed, using unified /login) */}
-        
-        <Route path="/home" element={<Layout><Home /></Layout>} />
-        <Route path="/about" element={<Layout><About /></Layout>} />
-        <Route path="/services" element={<Layout><Services /></Layout>} />
-        <Route path="/contact" element={<Layout><Contact /></Layout>} />
-        <Route path="/pharmacy" element={<Layout><Pharmacy /></Layout>} />
-        <Route path="/doctors" element={<Layout><Doctors /></Layout>} />
+      <AnimatePresence>
+        {showIntro && (
+          <IntroAnimation onComplete={handleIntroComplete} />
+        )}
+      </AnimatePresence>
 
-        {/* Existing Flat Protected Routes */}
-        <Route path="/book-appointment" element={<PrivateRoute><Layout><BookAppointment /></Layout></PrivateRoute>} />
-        <Route path="/my-appointments" element={<PrivateRoute><Layout><MyAppointments /></Layout></PrivateRoute>} />
-        <Route path="/profile" element={<PrivateRoute><Layout><Profile /></Layout></PrivateRoute>} />
-        
-        {/* New Dashboards */}
-        <Route path="/patient-dashboard" element={<PrivateRoute allowedRoles={['patient', 'admin']}><Layout><PatientDashboard /></Layout></PrivateRoute>} />
+      <motion.div
+        initial={showIntro ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
+        animate={!showIntro ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <ToastContainer />
+        <ScrollToTop />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Layout><LandingPage /></Layout>} />
+          <Route path="/login" element={<Layout><LoginRegister /></Layout>} />
+          
+          {/* New Login Routes (Removed, using unified /login) */}
+          
+          <Route path="/home" element={<Layout><Home /></Layout>} />
+          <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/services" element={<Layout><Services /></Layout>} />
+          <Route path="/contact" element={<Layout><Contact /></Layout>} />
+          <Route path="/pharmacy" element={<Layout><Pharmacy /></Layout>} />
+          <Route path="/doctors" element={<Layout><Doctors /></Layout>} />
 
-        {/* Doctor Routes */}
-        <Route path="/doctor" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><DoctorDashboard /></DoctorLayout></PrivateRoute>} />
-        <Route path="/doctor/appointments" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><DoctorAppointments /></DoctorLayout></PrivateRoute>} />
-        <Route path="/doctor/patients" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><DoctorPatients /></DoctorLayout></PrivateRoute>} />
-        <Route path="/doctor/prescriptions" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><DoctorPrescriptions /></DoctorLayout></PrivateRoute>} />
-        <Route path="/doctor/profile" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><Profile /></DoctorLayout></PrivateRoute>} />
+          {/* Existing Flat Protected Routes */}
+          <Route path="/book-appointment" element={<PrivateRoute><Layout><BookAppointment /></Layout></PrivateRoute>} />
+          <Route path="/my-appointments" element={<PrivateRoute><Layout><MyAppointments /></Layout></PrivateRoute>} />
+          <Route path="/profile" element={<PrivateRoute><Layout><Profile /></Layout></PrivateRoute>} />
+          
+          {/* New Dashboards */}
+          <Route path="/patient-dashboard" element={<PrivateRoute allowedRoles={['patient', 'admin']}><Layout><PatientDashboard /></Layout></PrivateRoute>} />
 
-        {/* Admin Routes */}
-        <Route path="/admin" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><AdminDashboard /></AdminLayout></PrivateRoute>} />
-        <Route path="/admin/doctors" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><ManageDoctors /></AdminLayout></PrivateRoute>} />
-        <Route path="/admin/appointments" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><ManageAppointments /></AdminLayout></PrivateRoute>} />
-        <Route path="/admin/patients" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><ManagePatients /></AdminLayout></PrivateRoute>} />
-        <Route path="/admin/payments" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><ManagePayments /></AdminLayout></PrivateRoute>} />
+          {/* Doctor Routes */}
+          <Route path="/doctor" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><DoctorDashboard /></DoctorLayout></PrivateRoute>} />
+          <Route path="/doctor/appointments" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><DoctorAppointments /></DoctorLayout></PrivateRoute>} />
+          <Route path="/doctor/patients" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><DoctorPatients /></DoctorLayout></PrivateRoute>} />
+          <Route path="/doctor/prescriptions" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><DoctorPrescriptions /></DoctorLayout></PrivateRoute>} />
+          <Route path="/doctor/profile" element={<PrivateRoute allowedRoles={['doctor']}><DoctorLayout><Profile /></DoctorLayout></PrivateRoute>} />
 
-        <Route path="*" element={<Layout><NotFound /></Layout>} />
-      </Routes>
+          {/* Admin Routes */}
+          <Route path="/admin" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><AdminDashboard /></AdminLayout></PrivateRoute>} />
+          <Route path="/admin/doctors" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><ManageDoctors /></AdminLayout></PrivateRoute>} />
+          <Route path="/admin/appointments" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><ManageAppointments /></AdminLayout></PrivateRoute>} />
+          <Route path="/admin/patients" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><ManagePatients /></AdminLayout></PrivateRoute>} />
+          <Route path="/admin/payments" element={<PrivateRoute allowedRoles={['admin']}><AdminLayout><ManagePayments /></AdminLayout></PrivateRoute>} />
+
+          <Route path="*" element={<Layout><NotFound /></Layout>} />
+        </Routes>
+      </motion.div>
     </>
   );
 };
 
 const App = () => (
-  <Router>
-    <AppContent />
-  </Router>
+  <ThemeProvider>
+    <Router>
+      <AppContent />
+    </Router>
+  </ThemeProvider>
 );
 
 export default App;
