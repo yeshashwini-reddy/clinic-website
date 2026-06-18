@@ -1,35 +1,57 @@
 /* Light & Dark Theme Variables */
 :root {
-  --bg-color: #F7F9FC;
-  --bg-secondary: #FFFFFF;
-  --card-color: #FFFFFF;
-  --navbar-color: rgba(255, 255, 255, 0.8);
-  --navbar-scrolled: rgba(255, 255, 255, 0.95);
-  --primary-color: #3F74E7;
-  --primary-hover: #3150B8;
-  --accent-color: #6FD3D7;
-  --text-color: #1E293B;
-  --text-secondary: #64748B;
-  --border-color: #E2E8F0;
+  --bg-color-rgb: 247 249 252;
+  --bg-secondary-rgb: 255 255 255;
+  --card-color-rgb: 255 255 255;
+  --navbar-color-rgb: 255 255 255;
+  --primary-color-rgb: 63 116 231;
+  --primary-hover-rgb: 49 80 184;
+  --accent-color-rgb: 111 211 215;
+  --text-color-rgb: 30 41 59;
+  --text-secondary-rgb: 100 116 139;
+  --border-color-rgb: 226 232 240;
+
+  --bg-color: rgb(var(--bg-color-rgb));
+  --bg-secondary: rgb(var(--bg-secondary-rgb));
+  --card-color: rgb(var(--card-color-rgb));
+  --navbar-color: rgba(var(--navbar-color-rgb) / 0.8);
+  --navbar-scrolled: rgba(var(--navbar-color-rgb) / 0.95);
+  --primary-color: rgb(var(--primary-color-rgb));
+  --primary-hover: rgb(var(--primary-hover-rgb));
+  --accent-color: rgb(var(--accent-color-rgb));
+  --text-color: rgb(var(--text-color-rgb));
+  --text-secondary: rgb(var(--text-secondary-rgb));
+  --border-color: rgb(var(--border-color-rgb));
   --shadow-main: 0 6px 20px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.12);
   --primary-glow: rgba(63, 116, 231, 0.15);
 }
 
 [data-theme="dark"] {
-  --bg-color: #0F172A;
-  --bg-secondary: #1E293B;
-  --card-color: #1E293B;
-  --navbar-color: rgba(17, 24, 39, 0.8);
-  --navbar-scrolled: rgba(17, 24, 39, 0.95);
-  --primary-color: #5B8CFF;
-  --primary-hover: #3b82f6; /* Brighter blue hover in dark mode */
-  --accent-color: #7DE2E8;
-  --text-color: #FFFFFF;
-  --text-secondary: #CBD5E1;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --shadow-main: 0 8px 30px rgba(0, 0, 0, 0.35);
-  --shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.45);
+  --bg-color-rgb: 0 0 0;
+  --bg-secondary-rgb: 18 18 18;
+  --card-color-rgb: 18 18 18;
+  --navbar-color-rgb: 0 0 0;
+  --primary-color-rgb: 91 140 255;
+  --primary-hover-rgb: 59 130 246;
+  --accent-color-rgb: 125 226 232;
+  --text-color-rgb: 255 255 255;
+  --text-secondary-rgb: 203 213 225;
+  --border-color-rgb: 255 255 255;
+
+  --bg-color: rgb(var(--bg-color-rgb));
+  --bg-secondary: rgb(var(--bg-secondary-rgb));
+  --card-color: rgb(var(--card-color-rgb));
+  --navbar-color: rgba(var(--navbar-color-rgb) / 0.85);
+  --navbar-scrolled: rgba(var(--navbar-color-rgb) / 0.98);
+  --primary-color: rgb(var(--primary-color-rgb));
+  --primary-hover: rgb(var(--primary-hover-rgb));
+  --accent-color: rgb(var(--accent-color-rgb));
+  --text-color: rgb(var(--text-color-rgb));
+  --text-secondary: rgb(var(--text-secondary-rgb));
+  --border-color: rgba(var(--border-color-rgb) / 0.08);
+  --shadow-main: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.55);
   --primary-glow: rgba(91, 140, 255, 0.15);
 }
 

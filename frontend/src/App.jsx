@@ -77,21 +77,17 @@ const AppContent = () => {
         )}
       </AnimatePresence>
 
-      <motion.div
-        initial={showIntro ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
-        animate={!showIntro ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      >
+      <div className="min-h-screen">
         <ToastContainer />
         <ScrollToTop />
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<Layout><LandingPage /></Layout>} />
+          <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/login" element={<Layout><LoginRegister /></Layout>} />
           
           {/* New Login Routes (Removed, using unified /login) */}
           
-          <Route path="/home" element={<Layout><Home /></Layout>} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/services" element={<Layout><Services /></Layout>} />
           <Route path="/contact" element={<Layout><Contact /></Layout>} />
@@ -122,7 +118,7 @@ const AppContent = () => {
 
           <Route path="*" element={<Layout><NotFound /></Layout>} />
         </Routes>
-      </motion.div>
+      </div>
     </>
   );
 };

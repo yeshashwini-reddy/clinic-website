@@ -25,7 +25,7 @@ const Layout = ({ children, hideFooter }) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className="flex flex-col min-h-screen bg-theme-bg">
       <Navbar />
       {isLanding ? (
         <main className="flex-grow pt-16">

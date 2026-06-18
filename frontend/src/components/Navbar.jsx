@@ -48,7 +48,7 @@ const Navbar = () => {
         </button>
         {/* Desktop menu */}
         <ul className="hidden md:flex space-x-6 items-center">
-          <li><Link to="/home" className="text-gray-700 hover:text-primary transition-colors nav-link-underline">Home</Link></li>
+          <li><Link to="/" className="text-gray-700 hover:text-primary transition-colors nav-link-underline">Home</Link></li>
           <li><Link to="/about" className="text-gray-700 hover:text-primary transition-colors nav-link-underline">About</Link></li>
           <li><Link to="/services" className="text-gray-700 hover:text-primary transition-colors nav-link-underline">Services</Link></li>
           <li><Link to="/pharmacy" className="text-gray-700 hover:text-primary transition-colors nav-link-underline">Pharmacy</Link></li>
@@ -57,7 +57,7 @@ const Navbar = () => {
           <li>
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-xl flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95"
+              className="p-2 rounded-full hover:bg-slate-100 transition-all text-xl flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95"
               title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
               aria-label="Toggle theme"
             >
@@ -91,7 +91,7 @@ const Navbar = () => {
         {/* Mobile menu (collapsed) */}
         {open && (
           <ul className="absolute top-full left-0 w-full bg-theme-card border-b border-theme-border shadow-lg md:hidden flex flex-col space-y-2 py-4 px-6">
-            <li><Link to="/home" onClick={() => setOpen(false)} className="block text-gray-700 hover:text-primary py-1">Home</Link></li>
+            <li><Link to="/" onClick={() => setOpen(false)} className="block text-gray-700 hover:text-primary py-1">Home</Link></li>
             <li><Link to="/about" onClick={() => setOpen(false)} className="block text-gray-700 hover:text-primary py-1">About</Link></li>
             <li><Link to="/services" onClick={() => setOpen(false)} className="block text-gray-700 hover:text-primary py-1">Services</Link></li>
             <li><Link to="/pharmacy" onClick={() => setOpen(false)} className="block text-gray-700 hover:text-primary py-1">Pharmacy</Link></li>
@@ -101,7 +101,7 @@ const Navbar = () => {
               <span className="text-gray-700 font-medium">Theme Mode</span>
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-xl flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95"
+                className="p-2 rounded-full hover:bg-slate-100 transition-all text-xl flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95"
                 aria-label="Toggle theme"
               >
                 <div

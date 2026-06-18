@@ -36,7 +36,7 @@ const PatientLayout = ({ children }) => {
   const SidebarContent = () => (
     <div className="flex flex-col h-full bg-white border-r border-slate-200">
       <div className="p-6 border-b border-slate-100 flex items-center justify-center">
-        <Link to="/home" className="inline-flex items-center justify-center p-2 bg-blue-50 rounded-xl">
+        <Link to="/" className="inline-flex items-center justify-center p-2 bg-blue-50 rounded-xl">
           <img src="/assets/logo.png" alt="Vanitha Clinic" className="h-8 w-auto" />
         </Link>
       </div>
